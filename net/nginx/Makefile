@@ -59,6 +59,8 @@ PKG_CONFIG_DEPENDS := \
 	CONFIG_NGINX_PCRE \
 	CONFIG_NGINX_NAXSI \
 	CONFIG_NGINX_LUA \
+        CONFIG_NGINX_DEVEL_KIT \
+        CONFIG_NGINX_HEADERS_MORE \
 	CONFIG_NGINX_HTTP_REAL_IP \
 	CONFIG_NGINX_HTTP_SECURE_LINK
 
@@ -220,6 +222,8 @@ define Build/Configure
 			--prefix=/usr \
 			--conf-path=/etc/nginx/nginx.conf \
 			$(ADDITIONAL_MODULES) \
+			--with-http_gunzip_module \
+                        --with-http_sub_module \
 			--error-log-path=/var/log/nginx/error.log \
 			--pid-path=/var/run/nginx.pid \
 			--lock-path=/var/lock/nginx.lock \
@@ -281,6 +285,32 @@ define  Prepare/lua-nginx
 	$(eval $(call Download,lua-nginx))
 	gzip -dc $(DL_DIR)/$(FILE) | tar -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)
 	$(call PatchDir,$(PKG_BUILD_DIR),./patches-lua-nginx)
+endef
+
+define Download/devel-kit
+	VERSION:=8dd0df5e9906465d624df46a994aadec585f8a8b
+	SUBDIR:=devel-kit
+	FILE:=nginx-devel-kit-$(PKG_VERSION)-$$(VERSION).tar.gz
+	URL:=https://github.com/simpl/ngx_devel_kit.git
+	PROTO:=git
+endef
+
+define  Prepare/devel-kit
+	$(eval $(call Download,devel-kit))
+	gzip -dc $(DL_DIR)/$(FILE) | tar -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)
+endef
+
+define Download/headers-more-nginx
+	VERSION:=02fd3778ab18de3ad132b84556b6cd45bc8d12d3
+	SUBDIR:=headers-more-nginx
+	FILE:=headers-more-nginx-module-$(PKG_VERSION)-$$(VERSION).tar.gz
+	URL:=https://github.com/openresty/headers-more-nginx-module.git
+	PROTO:=git
+endef
+
+define  Prepare/headers-more-nginx
+	$(eval $(call Download,headers-more-nginx))
+	gzip -dc $(DL_DIR)/$(FILE) | tar -C $(PKG_BUILD_DIR) $(TAR_OPTIONS)
 endef
 
 $(eval $(call BuildPackage,nginx))

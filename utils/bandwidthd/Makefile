@@ -9,17 +9,17 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=bandwidthd
 PKG_VERSION:=2.0.1-34
-PKG_RELEASE:=1
+PKG_RELEASE:=1b
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/NethServer/bandwidthd/archive/$(PKG_VERSION)
-PKG_MD5SUM:=a4075335d06fe91ae815616ed9e27375
+PKG_SOURCE:=master.zip
+PKG_SOURCE_URL:=https://github.com/deepak78/bandwidthd/archive/
+PKG_MD5SUM:=27b1e70e6ed6c5e85efd2c73c3c5e573
 
 PKG_MAINTAINER:=Jean-Michel Lacroix <lacroix@lepine-lacroix.info>
 
 PKG_LICENSE:=GPL-2.0
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/bandwidthd-master
 
 PKG_FIXUP:=autoreconf
 
