@@ -11,7 +11,7 @@ PKG_NAME:=bandwidthd
 PKG_VERSION:=2.0.1-34b
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/koyamash/bandwidthd/archive/
 PKG_MD5SUM:=e78e0465992a289cd01196ac24e57897
 
