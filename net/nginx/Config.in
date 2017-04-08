@@ -202,4 +202,18 @@ config NGINX_HTTP_SECURE_LINK
 	prompt "Enable HTTP secure link module"
 	default n
 
+config NGINX_HEADERS_MORE
+        bool
+        prompt "Enable HEADERS_MORE module"
+        help
+                Enable support for HEADERS_MORE
+	default n
+
+config NGINX_DEVEL_KIT
+        bool
+        prompt "Enable DEVEL KIT module"
+        help
+                Enable support for DEVEL KIT support.
+	default n
+
 endmenu
