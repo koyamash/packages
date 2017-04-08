@@ -98,6 +98,12 @@ endif
 ifeq ($(CONFIG_NGINX_LUA),y)
   ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/lua-nginx
 endif
+ifeq ($(CONFIG_NGINX_HEADERS_MORE),y)
+  ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/headers-more-nginx
+endif
+ifeq ($(CONFIG_NGINX_DEVEL_KIT),y)
+  ADDITIONAL_MODULES += --add-module=$(PKG_BUILD_DIR)/devel-kit
+endif
 ifeq ($(CONFIG_IPV6),y)
   ADDITIONAL_MODULES += --with-ipv6
 endif
