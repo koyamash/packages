@@ -1,0 +1,17 @@
+--- a/src/airodump-ng.c
++++ b/src/airodump-ng.c
+@@ -7012,10 +7012,13 @@
+     G.airodump_start_time[strlen(G.airodump_start_time) - 1] = 0; // remove new line
+     G.airodump_start_time = (char *) realloc( G.airodump_start_time, sizeof(char) * (strlen(G.airodump_start_time) + 1) );
+
+-    if( pthread_create( &(G.input_tid), NULL, (void *) input_thread, NULL ) != 0 )
++    if( isatty(fileno(stdin)) ) // Creates the thread for user input ONLY if it's on a terminal
+     {
+-	perror( "pthread_create failed" );
+-	return 1;
++        if( pthread_create( &(G.input_tid), NULL, (void *) input_thread, NULL ) != 0 )
++        {
++	    perror( "pthread_create failed" );
++	    return 1;
++        }
+     }
