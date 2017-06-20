@@ -264,6 +264,8 @@ define Build/Prepare
 	$(call Build/Prepare/Default)
 	$(if $(CONFIG_NGINX_NAXSI),$(call Prepare/nginx-naxsi))
 	$(if $(CONFIG_NGINX_LUA),$(call Prepare/lua-nginx))
+	$(if $(CONFIG_NGINX_DEVEL_KIT),$(call Prepare/devel-kit))
+        $(if $(CONFIG_NGINX_HEADERS_MORE),$(call Prepare/headers-more-nginx))
 endef
 
 define Download/nginx-naxsi
